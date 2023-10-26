@@ -11,6 +11,22 @@ export function ToetsPage(props) {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
+    const handleMinPriceChange = (e) => {
+        const newMinPrice = e.target.value !== '' ? parseFloat(e.target.value) : 0;
+        if (newMinPrice > maxPrice) {
+            setMaxPrice(newMinPrice);
+        }
+        setMinPrice(newMinPrice);
+    };
+
+    const handleMaxPriceChange = (e) => {
+        const newMaxPrice = e.target.value !== '' ? parseFloat(e.target.value) : 0;
+        if (newMaxPrice < minPrice) {
+            setMinPrice(newMaxPrice);
+        }
+        setMaxPrice(newMaxPrice);
+    };
+
     console.log(products)
     return (
         <div className="mx-3">
@@ -19,12 +35,12 @@ export function ToetsPage(props) {
                     Prijs
                     <Row>
                         <Col>
-                            <Form.Control type="number" placeholder="min" value={minPrice}
-                                onChange={e => setMinPrice(e.target.value)} />
+                            <Form.Control type="number" placeholder="min" value={minPrice} min={0}
+                                onChange={handleMinPriceChange} />
                         </Col>
                         <Col>
-                            <Form.Control type="number" placeholder="max" value={maxPrice}
-                                onChange={e => setMaxPrice(e.target.value)} />
+                            <Form.Control type="number" placeholder="max" value={maxPrice} min={0}
+                                onChange={handleMaxPriceChange} />
                         </Col>
                     </Row>
                 </Form>
