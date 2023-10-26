@@ -19,8 +19,8 @@ function Beverage(props) {
 Beverage.propTypes = {
     product: PropTypes.shape({
         name: PropTypes.string.isRequired,
-        age: PropTypes.number.isRequired,
-        city: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        inStock: PropTypes.number.isRequired,
     })
 }
 
@@ -28,7 +28,7 @@ export function Beverages(props) {
     const { products, title, isInitiallyOpen } = props;
     return (
         <Section title={title} isInitiallyOpen={isInitiallyOpen}>
-            {products.map(p => <Beverage key={p.id} product={p} />)}
+            {products.map(p => <Beverage key={p.name} product={p} />)}
         </Section>
     );
 }
