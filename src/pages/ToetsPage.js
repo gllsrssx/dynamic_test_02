@@ -1,26 +1,36 @@
 import * as PropTypes from "prop-types";
 import { Beverages } from "../components/Beverage";
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 
 Beverages.propTypes = { title: PropTypes.string };
 
 export function ToetsPage(props) {
     const { products } = props;
-    const [search, setSearch] = useState("");
+
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
+
     console.log(products)
     return (
         <div className="mx-3">
             <div className="m-3">
                 <Form>
-                    <Form.Label>Drankenlijst</Form.Label>
-                    <Form.Control
-                        value={search}
-                        onChange={e => setSearch(e.target.value)} />
+                    Prijs
+                    <Row>
+                        <Col>
+                            <Form.Control type="number" placeholder="min" value={minPrice}
+                                onChange={e => setMinPrice(e.target.value)} />
+                        </Col>
+                        <Col>
+                            <Form.Control type="number" placeholder="max" value={maxPrice}
+                                onChange={e => setMaxPrice(e.target.value)} />
+                        </Col>
+                    </Row>
                 </Form>
             </div>
             <Beverages title="Drankenlijst"
-                products={products.filter(p => p.name.includes(search) || p.price.includes(search))}
+                products={products.filter(p => (p.price >= minPrice || minPrice === 0 || minPrice === '') && (p.price <= maxPrice || maxPrice === 0 || maxPrice === ''))}
                 isInitiallyOpen={true} />
         </div>
     );

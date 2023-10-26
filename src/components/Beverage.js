@@ -3,14 +3,24 @@ import * as PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 import { MyCard } from "./MyCard";
 
+
+
 function Beverage(props) {
     const { product } = props;
+
+    const productStyle = {
+        color: product.inStock < 1 ? 'gray' : 'black'
+    };
+
     return (
         <Col xs={6} sm={4} md={3} lg={2}>
+
             <MyCard title={product.name}>
-                <div>{product.price} EUR</div>
-                <hr />
-                <div><i>in stock: {product.inStock}</i></div>
+                <div style={productStyle}>
+                    <div>{product.price} EUR</div>
+                    <hr />
+                    <div><i>in stock: {product.inStock}</i></div>
+                </div>
             </MyCard>
         </Col>
     );
