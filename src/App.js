@@ -15,10 +15,14 @@ import { FavoriteNumberPage } from "./pages/FavoriteNumberPage";
 import { InputPage } from "./pages/InputPage";
 import { SearchPersonsPage } from "./pages/SearchPersonsPage";
 import { ToetsPage } from "./pages/ToetsPage";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 function App() {
+    const [defaultTab, setDefaultTab] = useLocalStorage("defaultTabIndex", 11);
+
     return (
-        <Tabs>
+        <Tabs defaultIndex={defaultTab}
+            onSelect={(index) => setDefaultTab(index)}>
             <TabList>
                 <Tab>menu</Tab>
                 <Tab>pics</Tab>

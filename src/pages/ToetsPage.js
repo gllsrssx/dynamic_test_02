@@ -1,9 +1,9 @@
 import * as PropTypes from "prop-types";
-import { Products } from "../components/Products";
+import { Beverages } from "../components/Beverage";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 
-Products.propTypes = { title: PropTypes.string };
+Beverages.propTypes = { title: PropTypes.string };
 
 export function ToetsPage(props) {
     const { products } = props;
@@ -19,23 +19,9 @@ export function ToetsPage(props) {
                         onChange={e => setSearch(e.target.value)} />
                 </Form>
             </div>
-            <Products title="Drankenlijst"
+            <Beverages title="Drankenlijst"
                 products={products.filter(p => p.name.includes(search) || p.price.includes(search))}
                 isInitiallyOpen={true} />
         </div>
     );
 }
-
-// export function ToetsPage(props) {
-//     const {products} = props;
-//     return (
-//         <div className="mx-3">
-//             <MenuCard products={products}/>
-//         </div>
-//     );
-// }
-
-
-// ToetsPage.propTypes = {
-//     products: PropTypes.arrayOf(PropTypes.object).isRequired
-// }

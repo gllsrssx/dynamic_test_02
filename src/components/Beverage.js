@@ -3,7 +3,7 @@ import * as PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 import { MyCard } from "./MyCard";
 
-function Product(props) {
+function Beverage(props) {
     const { product } = props;
     return (
         <Col xs={6} sm={4} md={3} lg={2}>
@@ -16,7 +16,7 @@ function Product(props) {
     );
 }
 
-Product.propTypes = {
+Beverage.propTypes = {
     product: PropTypes.shape({
         name: PropTypes.string.isRequired,
         age: PropTypes.number.isRequired,
@@ -24,16 +24,16 @@ Product.propTypes = {
     })
 }
 
-export function Products(props) {
+export function Beverages(props) {
     const { products, title, isInitiallyOpen } = props;
     return (
         <Section title={title} isInitiallyOpen={isInitiallyOpen}>
-            {products.map(p => <Product key={p.id} product={p} />)}
+            {products.map(p => <Beverage key={p.id} product={p} />)}
         </Section>
     );
 }
 
-Products.propTypes = {
+Beverages.propTypes = {
     products: PropTypes.array,
     title: PropTypes.string
 }
